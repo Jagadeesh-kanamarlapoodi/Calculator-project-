@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+        <div class="calculator">
+            <!-- Display area for the calculator -->
+            <div id="result" class="mb-2">0</div>
+            <!-- Calculator buttons organized in rows -->
+            <div>
+                <button class="operator" onclick="clearDisplay()">AC</button>
+                <button class="operator" onclick="backspace()">DEL</button>
+                <button class="operator" onclick="appendToDisplay('%')">%</button>
+                <button class="operator" onclick="appendToDisplay('/')">/</button>
+            </div>
+            <!-- Number buttons for 7, 8, 9, and multiplication operator -->
+            <div>
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button class="operator" onclick="appendToDisplay('*')">*</button>
+            </div>
+            <!-- Number buttons for 6, 5, 4, and subtraction operator -->
+            <div>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('4')">4</button>
+                <button class="operator" onclick="appendToDisplay('-')">-</button>
+            </div>
+            <!-- Number buttons for 3, 2, 1, and addition operator -->
+            <div>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('1')">1</button>
+                <button class="operator" onclick="appendToDisplay('+')">+</button>
+            </div>
+            <!-- Number buttons for double zero, single zero, decimal point, and equal operator -->
+            <div>
+                <button onclick="appendToDisplay('00')">00</button>
+                <button onclick="appendToDisplay('0')">0</button>
+                <button onclick="appendToDisplay('.')">.</button>
+                <button class="eqlbtn" onclick="calculateResult()">=</button>
+            </div>
+
+        </div>
+
+    <script>
+        // Access the display element
+        let display = document.getElementById('result');
+
+        // Function to append values to the display
+        function appendToDisplay(value) {
+            // If the display shows '0', replace it with the new value
+            if (display.innerText === '0') {
+                display.innerText = '';
+            }
+            // Append the new value to the existing display content
+            display.innerText += value;
+        }
+
+        function clearDisplay() {
+             // Function to clear the display
+            display.innerText = '0';
+        }
+
+
+    // Function to remove the last character from the display
+        function backspace() {
+            display.innerText = display.innerText.slice(0, -1);
+            if (display.innerText === '') {
+                display.innerText = '0';
+            }
+        }
+
+        // Function to calculate and display the result
+        function calculateResult() {
+            try {
+                // Use eval to calculate the result and update the display
+                display.innerText = eval(display.innerText);
+            } catch (error) {
+                 // If there's an error during evaluation, display 'Error'
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
